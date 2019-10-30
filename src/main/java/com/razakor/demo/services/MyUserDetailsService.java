@@ -24,4 +24,13 @@ public class MyUserDetailsService implements UserDetailsService {
         user.orElseThrow(() -> new UsernameNotFoundException("Not found: " + username));
         return user.get();
     }
+
+    public void addUser(User user) {
+        userRepository.save(user);
+    }
+
+    public boolean isAlreadyExists(String sub) {
+        return userRepository.existsUserBySub(sub);
+    }
+
 }

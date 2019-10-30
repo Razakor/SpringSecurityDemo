@@ -15,19 +15,25 @@ import java.util.List;
 public class User implements UserDetails {
     @Id
     private ObjectId id;
+    private String sub;
     private String username;
     private String password;
-    private boolean enabled;
-    private List<GrantedAuthority> authorities;
+    private String email;
+    private String name;
+    private String surname;
+    private boolean enabled = true;
+    private List<GrantedAuthority> authorities = new ArrayList<>();
 
     public User() {
     }
 
-    public User(String username, String password, boolean enabled) {
+    public User(String sub, String username, String password, String email, String name, String surname) {
+        this.sub = sub;
         this.username = username;
         this.password = password;
-        this.enabled = enabled;
-        this.authorities = new ArrayList<>();
+        this.email = email;
+        this.name = name;
+        this.surname = surname;
     }
 
     @Override
@@ -91,5 +97,37 @@ public class User implements UserDetails {
 
     public void AddRole(String role) {
         authorities.add(new SimpleGrantedAuthority(role));
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
+    }
+
+    public String getSub() {
+        return sub;
+    }
+
+    public void setSub(String sub) {
+        this.sub = sub;
     }
 }

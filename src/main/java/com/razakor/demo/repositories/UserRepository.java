@@ -9,4 +9,7 @@ import java.util.Optional;
 public interface UserRepository extends MongoRepository<User, ObjectId> {
 
     Optional<User> findByUsername(String username);
+
+    boolean existsUserBySub(String sub);
+
 }
